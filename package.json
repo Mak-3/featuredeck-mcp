@@ -1,0 +1,34 @@
+{
+  "name": "featuredeck-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Model Context Protocol server for Featuredeck. Lets Claude, ChatGPT Desktop, Cursor and other MCP clients securely access Featuredeck data using a Featuredeck API key.",
+  "type": "module",
+  "bin": {
+    "featuredeck-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "start:http": "node dist/index.js --http",
+    "serve": "MCP_TRANSPORT=http node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

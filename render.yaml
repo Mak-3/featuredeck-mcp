@@ -1,0 +1,22 @@
+# Render blueprint for the Featuredeck MCP server.
+# Deploy: push to a repo, then "New +" -> "Blueprint" and point at this file.
+services:
+  - type: web
+    name: featuredeck-mcp
+    runtime: node
+    plan: starter
+    # A single instance keeps MCP sessions in memory. Do NOT scale past 1
+    # instance without sticky sessions / a shared session store (see README).
+    numInstances: 1
+    buildCommand: npm ci && npm run build
+    startCommand: node dist/index.js
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MCP_TRANSPORT
+        value: http
+      # Base URL of the Featuredeck backend the MCP server proxies to.
+      # Set this in the Render dashboard (sync: false keeps it out of git).
+      - key: FEATUREDECK_API_URL
+        sync: false
