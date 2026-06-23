@@ -1,15 +1,12 @@
 export type Role = "admin" | "editor" | "viewer";
 
 export interface AuthContext {
-  /** Organisation the key belongs to. */
   workspaceId: string;
-  /** Project the key is scoped to. */
+  workspaceName?: string;
   projectId: string;
-  /** Raw scopes attached to the key (e.g. ["read", "write"]). */
+  projectName?: string;
   scopes: string[];
-  /** Coarse role derived from scopes. */
   role: Role;
-  /** The raw bearer key, forwarded to the backend on every call. */
   apiKey: string;
 }
 

@@ -12,7 +12,9 @@ interface ContextResponse {
   success: boolean;
   data: {
     workspaceId: string;
+    workspaceName?: string;
     projectId: string;
+    projectName?: string;
     scopes: string[];
     role: Role;
   };
@@ -57,7 +59,9 @@ export async function resolveAuthContext(
 
   return {
     workspaceId: res.data.workspaceId,
+    workspaceName: res.data.workspaceName,
     projectId: res.data.projectId,
+    projectName: res.data.projectName,
     scopes: res.data.scopes ?? [],
     role: res.data.role,
     apiKey,

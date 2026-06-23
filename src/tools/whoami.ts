@@ -15,8 +15,8 @@ export function registerWhoamiTool(server: McpServer, ctx: AuthContext): void {
     },
     safeHandler(async () =>
       jsonResult({
-        workspaceId: ctx.workspaceId,
-        projectId: ctx.projectId,
+        workspaceName: ctx.workspaceName ?? ctx.workspaceId,
+        projectName: ctx.projectName ?? ctx.projectId,
         role: ctx.role,
         scopes: ctx.scopes,
       })
